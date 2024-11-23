@@ -1,0 +1,19 @@
+#+TITLE: POC: Dockerized CLI with input redirection
+#+AUTHOR: 64J0
+
+This repository contains the code for a proof of concept (POC) demonstrating how
+input redirection can be used to provide data to a Dockerized CLI
+application. The application, developed in F#, sums all numbers passed through
+STDIN after converting them to their integer representations.
+
++ Check this article from my personal blog for more details: [[https://gaio.dev/posts/2024-11-22-dockerized-cli-with-input-redirection][link]].
+
+** How to run
+
+#+BEGIN_SRC bash :tangle no
+  # run the program using "normal" base image
+  make run
+
+  # run the program using the chiseled base image
+  make run-chiseled
+#+END_SRC

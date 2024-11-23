@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-noble AS build
+
+WORKDIR app
+
+COPY add/ .
+
+RUN dotnet publish -c Release -o ./bin
+
+# ====================================================
+FROM mcr.microsoft.com/dotnet/runtime:8.0-noble-chiseled AS runtime-chiseled
+
+WORKDIR /app
+
+COPY --from=build /app/bin .
+
+ENTRYPOINT ["/app/add"]
+
+# ====================================================
+FROM mcr.microsoft.com/dotnet/runtime:8.0-noble AS runtime
+
+WORKDIR /app
+
+COPY --from=build /app/bin .
+
+ENTRYPOINT ["/app/add"]
